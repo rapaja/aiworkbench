@@ -9,29 +9,87 @@ ROOT = Path(".").resolve()
 PATH_IMG = 'path_img'
 PATH_ANN = 'path_box_txt'
 
-get_img_key = lambda r: (r['study'], r['series'])
 
 #%% Load data
 
-data_file_name = "vindr"
-data = pd.read_csv(ROOT / f"{data_file_name}.csv")
+# cbis_ddsm
+# csaws
+# inbreast
+# incisive -- samo za tesiranje
+# mias
+
+# VINDR
+# ---------
+# data_file_name = "vindr"
+# get_img_key = lambda r: (r['study'], r['series'])
+# get_img_name = lambda s: Path(s).stem
+
+# CBIS_DDSM
+# ---------
+# Unclear what is image name. Have duplicate images.
+# ---------
+data_file_name = "cbis_ddsm"
+get_img_key = lambda r: (r['subject'])
+get_img_name = lambda s: f"_{Path(s).parent}"
+
+# INBREAST
+# ---------
+# No annotation data
+# ---------
+# data_file_name = "inbreast"
+# get_img_key = lambda r: r['subject']
+# get_img_name = lambda s: Path(s).stem
+
+# CSAW
+# ----
+# data_file_name = "csaws"
+# get_img_key = lambda r: Path(r[PATH_IMG]).stem.split("_")[0]
+# get_img_name = lambda s: Path(s).stem
+
+# INCISIVE
+# ---------
+# data_file_name = "incisive"
+# get_img_key = lambda r: r['subject']
+# get_img_name = lambda s: f"{Path(s).parent.parent.parent}_{Path(s).parent}_{Path(s).stem}"
+
+# MIAS
+# ---------
+# Possible duplicates
+# ---------
+# data_file_name = "mias"
+# get_img_key = lambda r: r['subject']
+# get_img_name = lambda s: Path(s).stem
+
+
+data = pd.read_csv(ROOT / f"datasets/{data_file_name}.csv")
 data.info()
 
 #%% Filter data
 
 # Drop items with empty annotations
-# data = data.dropna(subset=[PATH_ANN])
-data = data[data[PATH_ANN].isna()]
+data = data.dropna(subset=[PATH_ANN])
+# data = data[data[PATH_ANN].isna()]
 
 data.info()
 
 #%% Check image name duplicates
 
-f = lambda s: Path(s).stem
-image_names = data[PATH_IMG].apply(f)
+image_names = data[PATH_IMG].apply(get_img_name)
 
-assert len(image_names[image_names.duplicated()]) == 0, "Found duplicate image names."
+# ONLY FOR CBIS_DDSM
+image_names = data["subject"] + image_names
 
+duplicated_imgs = image_names[image_names.duplicated()]
+if len(duplicated_imgs) != 0:
+    print("Found duplicate image names.")
+    print(duplicated_imgs)
+else:
+    print("No duplicate names found.")
+
+#%% ...
+
+data.drop_duplicates(keep=False)
+data.info()
 
 #%% ...
 
@@ -93,12 +151,12 @@ len(train_indices)/n, len(test_indices)/n, len(val_indices)/n
 #%% Save train_test_split to cvs
 
 train_data = data.loc[train_indices]
-train_data.to_csv(ROOT / f"{data_file_name}_train_neg.csv")
+train_data.to_csv(ROOT / f"{data_file_name}_train.csv")
 
 test_data = data.loc[test_indices]
-test_data.to_csv(ROOT / f"{data_file_name}_test_neg.csv")
+test_data.to_csv(ROOT / f"{data_file_name}_test.csv")
 
 val_data = data.loc[val_indices]
-val_data.to_csv(ROOT / f"{data_file_name}_val_neg.csv")
+val_data.to_csv(ROOT / f"{data_file_name}_val.csv")
 
 #%%

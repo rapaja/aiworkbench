@@ -1,0 +1,18 @@
+,provider,subject,laterality,viewpos,rows,cols,severity,abnormality,path_box_mask,path_box_txt,path_img
+126,mias,3,R,MLO,1024,1024,benign, CIRC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb005.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb005.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb005.png
+230,mias,9,R,MLO,1024,1024,benign,CIRC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb017.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb017.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb017.png
+125,mias,16,L,MLO,1024,1024,benign,MISC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb032.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb032.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb032.png
+131,mias,41,R,MLO,1024,1024,benign,ASYM,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb081.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb081.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb081.png
+269,mias,49,R,MLO,1024,1024,benign,ASYM,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb097.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb097.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb097.png
+240,mias,56,R,MLO,1024,1024,malignant,ASYM,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb111.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb111.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb111.png
+266,mias,64,R,MLO,1024,1024,benign,ARCH,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb127.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb127.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb127.png
+273,mias,72,L,MLO,1024,1024,malignant, MISC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb144.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb144.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb144.png
+144,mias,79,L,MLO,1024,1024,malignant,ARCH,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb158.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb158.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb158.png
+248,mias,88,R,MLO,1024,1024,benign,SPIC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb175.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb175.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb175.png
+74,mias,94,L,MLO,1024,1024,benign,SPIC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb188.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb188.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb188.png
+192,mias,101,L,MLO,1024,1024,malignant,SPIC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb202.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb202.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb202.png
+91,mias,107,R,MLO,1024,1024,malignant,CALC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb213.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb213.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb213.png
+110,mias,107,L,MLO,1024,1024,benign,CALC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb214.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb214.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb214.png
+187,mias,121,R,MLO,1024,1024,malignant,CALC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb241.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb241.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb241.png
+98,mias,132,L,MLO,1024,1024,malignant,MISC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb264.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb264.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb264.png
+119,mias,145,L,MLO,1024,1024,benign,CIRC,/mnt/md0/INCISIVE/DATA_PNG/mias/box_mask/mdb290.png,/mnt/md0/INCISIVE/DATA_PNG/mias/box_txt/mdb290.txt,/mnt/md0/INCISIVE/DATA_PNG/mias/image/mdb290.png
