@@ -1,4 +1,4 @@
-#%% Init
+# %% Init
 import pathlib
 from pathlib import Path
 
@@ -6,11 +6,11 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(".").resolve()
-PATH_IMG = 'path_img'
-PATH_ANN = 'path_box_txt'
+PATH_IMG = "path_img"
+PATH_ANN = "path_box_txt"
 
 
-#%% Load data
+# %% Load data
 
 # cbis_ddsm
 # csaws
@@ -26,16 +26,12 @@ PATH_ANN = 'path_box_txt'
 
 # CBIS_DDSM
 # ---------
-# Unclear what is image name. Have duplicate images.
-# ---------
 data_file_name = "cbis_ddsm"
 get_img_key = lambda r: (r['subject'])
 get_img_name = lambda s: f"_{Path(s).parent}"
 
 # INBREAST
-# ---------
-# No annotation data
-# ---------
+# --------
 # data_file_name = "inbreast"
 # get_img_key = lambda r: r['subject']
 # get_img_name = lambda s: Path(s).stem
@@ -48,9 +44,11 @@ get_img_name = lambda s: f"_{Path(s).parent}"
 
 # INCISIVE
 # ---------
-# data_file_name = "incisive"
-# get_img_key = lambda r: r['subject']
-# get_img_name = lambda s: f"{Path(s).parent.parent.parent}_{Path(s).parent}_{Path(s).stem}"
+# data_file_name = "incisive_052023"
+# get_img_key = lambda r: r["subject"]
+# get_img_name = (
+#     lambda s: f"{Path(s).parent.parent.parent}_{Path(s).parent}_{Path(s).stem}"
+# )
 
 # MIAS
 # ---------
@@ -64,20 +62,20 @@ get_img_name = lambda s: f"_{Path(s).parent}"
 data = pd.read_csv(ROOT / f"datasets/{data_file_name}.csv")
 data.info()
 
-#%% Filter data
+# %% Filter data
 
-# Drop items with empty annotations
+# Drop unwanted data
 data = data.dropna(subset=[PATH_ANN])
 # data = data[data[PATH_ANN].isna()]
 
 data.info()
 
-#%% Check image name duplicates
+# %% Check image name duplicates
 
 image_names = data[PATH_IMG].apply(get_img_name)
 
 # ONLY FOR CBIS_DDSM
-image_names = data["subject"] + image_names
+# image_names = data["subject"] + image_names
 
 duplicated_imgs = image_names[image_names.duplicated()]
 if len(duplicated_imgs) != 0:
@@ -86,12 +84,13 @@ if len(duplicated_imgs) != 0:
 else:
     print("No duplicate names found.")
 
-#%% ...
+# %% ...
 
-data.drop_duplicates(keep=False)
+# data.drop_duplicates(keep=False)
 data.info()
 
-#%% ...
+# %% ...
+
 
 def append_to_subset(i, k):
     train_no, test_no, val_no = len(train_indices), len(test_indices), len(val_indices)
@@ -100,9 +99,16 @@ def append_to_subset(i, k):
         train_keys.add(k)
         train_indices.append(i)
     else:
-        train_r, test_r, val_r = train_no/total_no, test_no/total_no, val_no/total_no
-        train_err, test_err, val_err = \
-            (train_ratio - train_r)/train_ratio, (test_ratio - test_r)/test_ratio, (val_ratio - val_r)/val_ratio
+        train_r, test_r, val_r = (
+            train_no / total_no,
+            test_no / total_no,
+            val_no / total_no,
+        )
+        train_err, test_err, val_err = (
+            (train_ratio - train_r) / train_ratio,
+            (test_ratio - test_r) / test_ratio,
+            (val_ratio - val_r) / val_ratio,
+        )
         if train_err >= max(test_err, val_err):
             train_keys.add(k)
             train_indices.append(i)
@@ -114,7 +120,7 @@ def append_to_subset(i, k):
             val_indices.append(i)
 
 
-#%% Split train-test-val
+# %% Split train-test-val
 
 ndx = data.index.to_numpy()
 np.random.shuffle(ndx)
@@ -146,9 +152,9 @@ for i in ndx:
 
 
 n = len(data)
-len(train_indices)/n, len(test_indices)/n, len(val_indices)/n
+len(train_indices) / n, len(test_indices) / n, len(val_indices) / n
 
-#%% Save train_test_split to cvs
+# %% Save train_test_split to cvs
 
 train_data = data.loc[train_indices]
 train_data.to_csv(ROOT / f"{data_file_name}_train.csv")
@@ -159,4 +165,15 @@ test_data.to_csv(ROOT / f"{data_file_name}_test.csv")
 val_data = data.loc[val_indices]
 val_data.to_csv(ROOT / f"{data_file_name}_val.csv")
 
-#%%
+# %% Keep a subset of data
+
+
+ndx = data.index.to_numpy()
+np.random.shuffle(ndx)
+
+# %%
+new_data = data.loc[ndx[:320]]
+new_data.info()
+
+new_data.to_csv(ROOT / f"incisive_052023_test_neg.csv")
+# %%
